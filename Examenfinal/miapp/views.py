@@ -1,5 +1,5 @@
-from django.shortcuts import render, HttpResponse
-
+from django.shortcuts import render, HttpResponse, redirect
+from miapp.models import Personas
 
 # Create your views here.
 
@@ -22,6 +22,14 @@ def index(request):
     """
     return HttpResponse(layout + mensaje)
 
-
+def crear_personas(request):
+    Personas = Personas(
+        nombre = "La persona posee nombre",
+        apellido = "La persona posee apellido",
+        sexo= "sexo de la persona M o F"
+        fecha_de_registro = True
+    )
+    Personas.save()
+    return HttpResponse(f"Persona Creada: {Personas.nombre} - {Personas.apellido} - {Personas.sexo}")
 
 
